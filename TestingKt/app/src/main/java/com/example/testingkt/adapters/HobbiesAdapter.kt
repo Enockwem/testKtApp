@@ -1,4 +1,4 @@
-package com.example.testingkt
+package com.example.testingkt.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testingkt.Hobby
+import com.example.testingkt.R
+import com.example.testingkt.activities.HobbyDisplayActivity
+import com.example.testingkt.showToast
 
 class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerView.Adapter<HobbiesAdapter.MyViewHolder>() {
 
@@ -37,17 +40,21 @@ class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerVi
 
         init{
             itemView.setOnClickListener {
-                // Do the explicit data transfer when the item is clicked
-                val intent = Intent(context,HobbyDisplayActivity::class.java)
-                val combination = currentHobby!!.nameOfHobby + " " + currentPosition.toString()
-                intent.putExtra("Recycler_item",combination)
+                currentHobby?.let {
+                    // Do the explicit data transfer when the item is clicked
+                    val intent = Intent(context, HobbyDisplayActivity::class.java)
+                    val combination = currentHobby!!.nameOfHobby + " " + currentPosition.toString()
+                    intent.putExtra("Recycler_item",combination)
 
-                startActivity(context,intent,null)
-               // Toast.makeText(context,currentHobby!!.nameOfHobby, Toast.LENGTH_SHORT).show()
+                    startActivity(context,intent,null)
+                }
             }
         }
         fun setData(hobby: Hobby?, pos: Int){
-            gettxt.text = hobby!!.nameOfHobby
+            // using the Safe call with let ?.let{}
+            hobby?.let {
+                gettxt.text = hobby!!.nameOfHobby
+            }
             this.currentHobby = hobby
             this.currentPosition = pos
         }

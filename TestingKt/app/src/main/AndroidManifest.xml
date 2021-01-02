@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestingKt">
-        <activity android:name=".SecondActivity"></activity>
-        <activity android:name=".HobbiesActivity"></activity>
-        <activity android:name=".HobbyDisplayActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.SecondActivity"></activity>
+        <activity android:name=".activities.HobbiesActivity"></activity>
+        <activity android:name=".activities.HobbyDisplayActivity"></activity>
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,9 +1,9 @@
-package com.example.testingkt
+package com.example.testingkt.activities
 
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
+import com.example.testingkt.R
 
 class HobbyDisplayActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

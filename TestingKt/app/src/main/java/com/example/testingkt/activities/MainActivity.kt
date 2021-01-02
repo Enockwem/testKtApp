@@ -1,4 +1,4 @@
-package com.example.testingkt
+package com.example.testingkt.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.testingkt.Constants
+import com.example.testingkt.R
+import com.example.testingkt.showToast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val showAtossMessage = findViewById<Button>(R.id.button_2)
         val getmessage = findViewById<EditText>(R.id.enter_message)
 
-        
+
         // Button for implicit data sharing
         // This involves sending data to another application in the phone
         showAtossMessage.setOnClickListener {
@@ -31,8 +34,10 @@ class MainActivity : AppCompatActivity() {
             // start the activity
             startActivity(Intent.createChooser(intent,"Share to: "))
             // Showing some message after the click
-             Log.i("MainActivity","Button 2 was clicked")
-             Toast.makeText(this,"Button 2 was clicked !",Toast.LENGTH_SHORT).show()
+            Log.i("MainActivity","Button 2 was clicked")
+            // Toast.makeText(this,,Toast.LENGTH_SHORT).show()
+            showToast("Button 2 was clicked !")
+
         }
 
 
@@ -41,13 +46,14 @@ class MainActivity : AppCompatActivity() {
         // Doing explicit data sharing which involves sending data from one activity to another
         changeToActivate.setOnClickListener {
             val message = getmessage.text.toString()
-            Toast.makeText(this, message,Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, message,Toast.LENGTH_SHORT).show()
+            showToast(message)
 
             // Moving to another intent in kotlin for android
-            val intent = Intent(this,SecondActivity :: class.java)
+            val intent = Intent(this, SecondActivity :: class.java)
 
             // Sending a message to the second activity
-            intent.putExtra("message_sent",message)
+            intent.putExtra(Constants.USER_MSG_KEY,message)
             startActivity(intent)
         }
     }
